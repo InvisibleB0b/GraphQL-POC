@@ -24,13 +24,14 @@ namespace GraphQL_POC.Repositories
 
             List<Race> races = data.MRData.RaceTable.Races;
 
-            return races;
+            races = races.Select(r => { r.series = data.MRData.series; return r; }).ToList();
 
+            return races;
         }
 
         public async Task<List<Race>> GetSpecificRaces(string series, string season, string round)
         {
-            var clientResponse = await http.GetAsync($"http://ergast.com/api/{series}/{(season == null ? "" : round == null ? season : $"{season}/{round}")}.json");
+            var clientResponse = await http.GetAsync($"http://ergast.com/api/{series}{(season == null ? "" : round == null ? $"/{season}" : $"/{season}/{round}")}.json");
             clientResponse.EnsureSuccessStatusCode();
 
             var jsonstring = await clientResponse.Content.ReadAsStringAsync();
@@ -38,6 +39,8 @@ namespace GraphQL_POC.Repositories
             BaseObj data = JsonConvert.DeserializeObject<BaseObj>(jsonstring);
 
             List<Race> races = data.MRData.RaceTable.Races;
+
+            races = races.Select(r => { r.series = data.MRData.series; return r; }).ToList();
 
             return races;
         }

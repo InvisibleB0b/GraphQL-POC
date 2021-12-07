@@ -1,4 +1,5 @@
 ﻿using GraphQL_POC.Models;
+using GraphQL_POC.Repositories;
 using HotChocolate.Types;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace GraphQL_POC.QueryTypes
         protected override void Configure(IObjectTypeDescriptor<Race> descriptor)
         {
             descriptor
-                .Field(r => r.Results);
+                .Field(r => r.Results)
+                .ResolveWith<ErgastDriverService>((x) => x.GetDriversFromRace(default));
         }
     }
 }

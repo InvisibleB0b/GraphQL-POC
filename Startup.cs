@@ -11,6 +11,7 @@ using GraphQL_POC.Queries;
 using GraphQL_POC.Models;
 using GraphQL_POC.Interfaces;
 using GraphQL_POC.Repositories;
+using GraphQL_POC.QueryTypes;
 
 namespace GraphQL_POC
 {
@@ -24,9 +25,11 @@ namespace GraphQL_POC
                 .AddGraphQLServer()
                 .AddQueryType(o => o.Name("Query"))
                 .AddTypeExtension<RacesQuery>()
+                .AddType<RacesType>()
                 .AddTypeExtension<TestQuery>();
 
             services.AddSingleton<IErgastRaceService, ErgastRaceService>();
+            services.AddSingleton<IErgastDriverService, ErgastDriverService>();
 
 
         }
