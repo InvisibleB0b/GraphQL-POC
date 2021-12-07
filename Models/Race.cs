@@ -13,5 +13,6 @@ namespace GraphQL_POC.Models
         public string raceName { get; set; }
         public Circuit Circuit { get; set; }
         public string date { get; set; }
+        public List<Result> Results { get; set; }
     }
 }

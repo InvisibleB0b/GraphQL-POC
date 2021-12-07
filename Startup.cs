@@ -26,7 +26,7 @@ namespace GraphQL_POC
                 .AddTypeExtension<RacesQuery>()
                 .AddTypeExtension<TestQuery>();
 
-            services.AddSingleton<IErgastService, ErgastService>();
+            services.AddSingleton<IErgastRaceService, ErgastRaceService>();
 
 
         }

@@ -14,6 +14,8 @@ namespace GraphQL_POC.Queries
     [ExtendObjectType("Query")]
     public class RacesQuery
     {
-        public async Task<List<Race>> GetRaces([Service] IErgastService serive) => await serive.GetRaces();
+        public async Task<List<Race>> GetRaces([Service] IErgastRaceService serive) => await serive.GetRaces();
+
+        public async Task<List<Race>> GetSpecificRace([Service] IErgastRaceService service, string series, string? season, string? round) => await service.GetSpecificRaces(series, season, round);
     }
 }
