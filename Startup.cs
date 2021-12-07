@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GraphQL_POC.Queries;
+using GraphQL_POC.Models;
+using GraphQL_POC.Interfaces;
+using GraphQL_POC.Repositories;
 
 namespace GraphQL_POC
 {
@@ -19,7 +22,13 @@ namespace GraphQL_POC
         {
             services
                 .AddGraphQLServer()
-                .AddQueryType<TestQuery>();
+                .AddQueryType(o => o.Name("Query"))
+                .AddTypeExtension<RacesQuery>()
+                .AddTypeExtension<TestQuery>();
+
+            services.AddSingleton<IErgastService, ErgastService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
