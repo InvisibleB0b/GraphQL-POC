@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GraphQL_POC.Repositories
@@ -17,6 +18,9 @@ namespace GraphQL_POC.Repositories
 
         public async Task<List<Result>> GetDriversFromRace([Parent] Race race)
         {
+
+            Thread.Sleep(255);
+
             var clientResponse = await http.GetAsync($"http://ergast.com/api/{race.series}/{race.season}/{race.round}/results.json");
             clientResponse.EnsureSuccessStatusCode();
 

@@ -14,6 +14,18 @@ namespace GraphQL_POC.QueryTypes
         protected override void Configure(IObjectTypeDescriptor<Race> descriptor)
         {
             descriptor
+                .ImplementsNode()
+                .IdField(f => f.Id)
+                .ResolveNode(async (context, id) =>
+                {
+                    List<string> identifiers = id.Split(" ").ToList();
+
+                    List<Race> race = await context.Service<ErgastRaceService>().GetSpecificRaces(identifiers[0], identifiers[1], identifiers[2]);
+
+                    return race[0];
+                });
+
+            descriptor
                 .Field(r => r.Results)
                 .ResolveWith<ErgastDriverService>((x) => x.GetDriversFromRace(default));
         }

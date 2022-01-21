@@ -24,7 +24,7 @@ namespace GraphQL_POC.Repositories
 
             List<Race> races = data.MRData.RaceTable.Races;
 
-            races = races.Select(r => { r.series = data.MRData.series; return r; }).ToList();
+            races = races.Select(r => { r.series = data.MRData.series; r.Id = $"{r.series} {r.season} {r.round}"; return r; }).ToList();
 
             return races;
         }
@@ -40,7 +40,7 @@ namespace GraphQL_POC.Repositories
 
             List<Race> races = data.MRData.RaceTable.Races;
 
-            races = races.Select(r => { r.series = data.MRData.series; return r; }).ToList();
+            races = races.Select(r => { r.series = data.MRData.series; r.Id = $"{r.series} {r.season} {r.round}"; return r; }).ToList();
 
             return races;
         }

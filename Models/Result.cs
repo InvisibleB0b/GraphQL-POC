@@ -15,8 +15,8 @@ namespace GraphQL_POC.Models
         public string grid { get; set; }
         public string laps { get; set; }
         public string status { get; set; }
-        public Time Time { get; set; }
-        public FastestLap FastestLap { get; set; }
+        public Time? Time { get; set; }
+        public FastestLap? FastestLap { get; set; }
     }
     public class FastestLap
     {

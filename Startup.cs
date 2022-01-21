@@ -23,6 +23,7 @@ namespace GraphQL_POC
         {
             services
                 .AddGraphQLServer()
+                .AddGlobalObjectIdentification()
                 .AddQueryType(o => o.Name("Query"))
                 .AddTypeExtension<RacesQuery>()
                 .AddType<RacesType>()
@@ -31,7 +32,11 @@ namespace GraphQL_POC
             services.AddSingleton<IErgastRaceService, ErgastRaceService>();
             services.AddSingleton<IErgastDriverService, ErgastDriverService>();
 
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AnyCors",
+                                  builder =>{builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader();});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +46,8 @@ namespace GraphQL_POC
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AnyCors");
 
             app
                 .UseRouting()
