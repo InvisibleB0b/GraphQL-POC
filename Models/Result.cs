@@ -7,14 +7,14 @@ namespace GraphQL_POC.Models
 {
     public class Result
     {
-        public string number { get; set; }
-        public string position { get; set; }
-        public string positionText { get; set; }
-        public string points { get; set; }
+        public string? number { get; set; }
+        public string? position { get; set; }
+        public string? positionText { get; set; }
+        public string? points { get; set; }
         public Driver? Driver { get; set; }
-        public string grid { get; set; }
-        public string laps { get; set; }
-        public string status { get; set; }
+        public string? grid { get; set; }
+        public string? laps { get; set; }
+        public string? status { get; set; }
         public Time? Time { get; set; }
         public FastestLap? FastestLap { get; set; }
     }
@@ -27,14 +27,14 @@ namespace GraphQL_POC.Models
     }
     public class Driver
     {
-        public string driverId { get; set; }
-        public string permanentNumber { get; set; }
-        public string code { get; set; }
-        public string url { get; set; }
-        public string givenName { get; set; }
-        public string familyName { get; set; }
-        public string dateOfBirth { get; set; }
-        public string nationality { get; set; }
+        public string? driverId { get; set; }
+        public string? permanentNumber { get; set; }
+        public string? code { get; set; }
+        public string? url { get; set; }
+        public string? givenName { get; set; }
+        public string? familyName { get; set; }
+        public string? dateOfBirth { get; set; }
+        public string? nationality { get; set; }
     }
 
     public class Constructor
